@@ -1,0 +1,16 @@
+{
+  "name": "@jdsantiagojr/json-to-schema",
+  "version": "0.0.2",
+  "main": "index.js",
+  "bin": {
+    "json-to-schema": "./bin/cli.js"
+  },
+  "repository": "https://github.com/jdsantiagojr/json-to-schema.git",
+  "author": "John Santiago Jr. <john.santiago@smartcosmos.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {},
+  "dependencies": {
+    "yargs": "^15.1.0"
+  }
+}
