@@ -2,7 +2,7 @@
 
 const fs = require('fs').promises
 const path = require('path')
-const parse = require('json-to-schema')
+const parse = require('@jdsantiagojr/json-to-schema')
 const { argv } = require('yargs')
   .option('file', {
     alias: 'f',
