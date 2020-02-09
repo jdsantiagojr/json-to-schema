@@ -198,7 +198,7 @@ const newGenericSchema = function (json, next = pass) {
   }
 
   if (schema.type === 'string') {
-    schema.format = inferFormat(json)
+    // schema.format = inferFormat(json)
   }
 
   return next(schema)
