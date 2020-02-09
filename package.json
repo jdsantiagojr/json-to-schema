@@ -1,6 +1,6 @@
 {
   "name": "@jdsantiagojr/json-to-schema",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "bin": {
     "json-to-schema": "./bin/cli.js"
