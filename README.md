@@ -11,6 +11,7 @@ Options
   examples: true,
   defaults: true,
   paths: true
+  detectFormat: true
 }
 ```
 
@@ -18,23 +19,24 @@ Example Input/Output
 
 ```json
 {
-  "*username": "john.doe@exmaple.com",
   "name": {
-    "first": "John",
-    "last": "Doe"
+    "first": "Jason",
+    "last": "Bourne"
   },
-  "geoLocation": {
-    "*lat": 37.1059113,
-    "*lon": -97.0466279
+  "age": 30,
+  "*username": "jbourne",
+  "*email": "jason.bourne@gmail.com",
+  "createdAt": "2018-11-13T20:20:39+00:00",
+  "lastLogin": {
+    "time": "20:20:39+00:00",
+    "date": "2018-11-13",
+    "terminal": {
+      "ip": "98.139.180.149"
+    }
   },
-  "createdAt": {
-    "type": "string",
-    "format": "date-time"
-  },
-  "codes": [
-    "pa",
-    "ny",
-    "oh"
+  "whitelist": [
+    "2607:f0d0:1002:0051:0000:0000:0000:0004",
+    "2607:f0d0:1002:51::4"
   ]
 }
 ```
@@ -42,26 +44,19 @@ Example Input/Output
 ```json
 {
   "properties": {
-    "username": {
-      "type": "string",
-      "examples": [
-        "john.doe@exmaple.com"
-      ],
-      "default": ""
-    },
     "name": {
       "properties": {
         "first": {
           "type": "string",
           "examples": [
-            "John"
+            "Jason"
           ],
           "default": ""
         },
         "last": {
           "type": "string",
           "examples": [
-            "Doe"
+            "Bourne"
           ],
           "default": ""
         }
@@ -72,53 +67,94 @@ Example Input/Output
       "$id": "#/properties/name",
       "default": {}
     },
-    "geoLocation": {
-      "properties": {
-        "lat": {
-          "type": "number",
-          "examples": [
-            37.1059113
-          ],
-          "default": 0
-        },
-        "lon": {
-          "type": "number",
-          "examples": [
-            -97.0466279
-          ],
-          "default": 0
-        }
-      },
-      "required": [
-        "lat",
-        "lon"
+    "age": {
+      "type": "number",
+      "examples": [
+        30
       ],
-      "type": "object",
-      "additionalProperties": false,
-      "$id": "#/properties/geoLocation",
-      "default": {}
+      "default": 0
     },
-    "createdAt": {
-      "format": "date-time",
+    "username": {
       "type": "string",
       "examples": [
-        null
+        "jbourne"
       ],
       "default": ""
     },
-    "codes": {
+    "email": {
+      "type": "string",
+      "examples": [
+        "jason.bourne@gmail.com"
+      ],
+      "format": "email",
+      "default": ""
+    },
+    "createdAt": {
+      "type": "string",
+      "examples": [
+        "2018-11-13T20:20:39+00:00"
+      ],
+      "format": "date-time",
+      "default": ""
+    },
+    "lastLogin": {
+      "properties": {
+        "time": {
+          "type": "string",
+          "examples": [
+            "20:20:39+00:00"
+          ],
+          "format": "time",
+          "default": ""
+        },
+        "date": {
+          "type": "string",
+          "examples": [
+            "2018-11-13"
+          ],
+          "format": "date",
+          "default": ""
+        },
+        "terminal": {
+          "properties": {
+            "ip": {
+              "type": "string",
+              "examples": [
+                "98.139.180.149"
+              ],
+              "format": "ipv4",
+              "default": ""
+            }
+          },
+          "required": [],
+          "type": "object",
+          "additionalProperties": false,
+          "$id": "#/properties/lastLogin/properties/terminal",
+          "default": {}
+        }
+      },
+      "required": [],
+      "type": "object",
+      "additionalProperties": false,
+      "$id": "#/properties/lastLogin",
+      "default": {}
+    },
+    "whitelist": {
       "type": "array",
       "items": {
         "type": "string",
         "examples": [
-          "pa"
-        ]
+          "2607:f0d0:1002:0051:0000:0000:0000:0004",
+          "2607:f0d0:1002:51::4"
+        ],
+        "format": "ipv6"
       },
       "default": []
     }
   },
   "required": [
-    "username"
+    "username",
+    "email"
   ],
   "type": "object",
   "additionalProperties": false,
