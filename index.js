@@ -286,6 +286,10 @@ const parse = function (json, opt = {}) {
     useDetectFormat(opt.detectFormat)
   ]))
 
+  if (opt.draft) {
+    schema.$schema = 'http://json-schema.org/draft-07/schema'
+  }
+
   if (opt.id) {
     schema.$id = opt.id
   }
@@ -293,8 +297,6 @@ const parse = function (json, opt = {}) {
   if (opt.title) {
     schema.title = opt.title
   }
-
-  schema.$schema = 'http://json-schema.org/draft-07/schema'
 
   return schema
 }
