@@ -1,4 +1,4 @@
-# to-json-schema
+# json-to-schema
 
 Options
 
