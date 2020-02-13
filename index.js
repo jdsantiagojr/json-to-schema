@@ -299,4 +299,10 @@ const parse = function (json, opt = {}) {
   return schema
 }
 
-module.exports = parse
+if (typeof module !== 'undefined' && !module.parent) {
+  module.exports = parse
+}
+
+if (typeof window !== 'undefined' && typeof window === 'object') {
+  window.jsonToSchema = parse;
+}
