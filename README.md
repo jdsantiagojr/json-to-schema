@@ -10,7 +10,7 @@ Options
   additionalProperties: false,
   examples: true,
   defaults: true,
-  paths: true
+  paths: true,
   detectFormat: true
 }
 ```
@@ -23,6 +23,7 @@ Example Input/Output
     "first": "Jason",
     "last": "Bourne"
   },
+  "tenant": "123e4567-e89b-12d3-a456-426655440000",
   "age": 30,
   "*username": "jbourne",
   "*email": "jason.bourne@gmail.com",
@@ -39,127 +40,154 @@ Example Input/Output
     "2607:f0d0:1002:51::4"
   ]
 }
-```
-
-```json
 {
+  "type": "object",
   "properties": {
     "name": {
+      "type": "object",
       "properties": {
         "first": {
           "type": "string",
+          "default": "",
           "examples": [
             "Jason"
-          ],
-          "default": ""
+          ]
         },
         "last": {
           "type": "string",
+          "default": "",
           "examples": [
             "Bourne"
-          ],
-          "default": ""
+          ]
         }
       },
       "required": [],
-      "type": "object",
       "additionalProperties": false,
+      "default": {},
       "$id": "#/properties/name",
-      "default": {}
+      "examples": [
+        {
+          "first": "Jason",
+          "last": "Bourne"
+        }
+      ]
+    },
+    "tenant": {
+      "type": "string",
+      "default": "",
+      "format": "uuid",
+      "examples": [
+        "123e4567-e89b-12d3-a456-426655440000"
+      ]
     },
     "age": {
       "type": "number",
+      "default": 0,
       "examples": [
         30
-      ],
-      "default": 0
+      ]
     },
     "username": {
       "type": "string",
+      "default": "",
       "examples": [
         "jbourne"
-      ],
-      "default": ""
+      ]
     },
     "email": {
       "type": "string",
+      "default": "",
+      "format": "email",
       "examples": [
         "jason.bourne@gmail.com"
-      ],
-      "format": "email",
-      "default": ""
+      ]
     },
     "createdAt": {
       "type": "string",
+      "default": "",
+      "format": "date-time",
       "examples": [
         "2018-11-13T20:20:39+00:00"
-      ],
-      "format": "date-time",
-      "default": ""
+      ]
     },
     "lastLogin": {
+      "type": "object",
       "properties": {
         "time": {
           "type": "string",
+          "default": "",
+          "format": "time",
           "examples": [
             "20:20:39+00:00"
-          ],
-          "format": "time",
-          "default": ""
+          ]
         },
         "date": {
           "type": "string",
+          "default": "",
+          "format": "date",
           "examples": [
             "2018-11-13"
-          ],
-          "format": "date",
-          "default": ""
+          ]
         },
         "terminal": {
+          "type": "object",
           "properties": {
             "ip": {
               "type": "string",
+              "default": "",
+              "format": "ipv4",
               "examples": [
                 "98.139.180.149"
-              ],
-              "format": "ipv4",
-              "default": ""
+              ]
             }
           },
           "required": [],
-          "type": "object",
           "additionalProperties": false,
+          "default": {},
           "$id": "#/properties/lastLogin/properties/terminal",
-          "default": {}
+          "examples": [
+            {
+              "ip": "98.139.180.149"
+            }
+          ]
         }
       },
       "required": [],
-      "type": "object",
       "additionalProperties": false,
+      "default": {},
       "$id": "#/properties/lastLogin",
-      "default": {}
+      "examples": [
+        {
+          "time": "20:20:39+00:00",
+          "date": "2018-11-13",
+          "terminal": {
+            "ip": "98.139.180.149"
+          }
+        }
+      ]
     },
     "whitelist": {
       "type": "array",
       "items": {
         "type": "string",
+        "default": "",
+        "format": "ipv6",
         "examples": [
-          "2607:f0d0:1002:0051:0000:0000:0000:0004",
-          "2607:f0d0:1002:51::4"
-        ],
-        "format": "ipv6"
+          "2607:f0d0:1002:0051:0000:0000:0000:0004"
+        ]
       },
-      "default": []
+      "default": [],
+      "examples": [
+        "2607:f0d0:1002:0051:0000:0000:0000:0004",
+        "2607:f0d0:1002:51::4"
+      ]
     }
   },
   "required": [
     "username",
     "email"
   ],
-  "type": "object",
   "additionalProperties": false,
-  "$id": "http://example.com/schema.json",
-  "default": {},
-  "$schema": "http://json-schema.org/draft-07/schema"
+  "$id": "http://example.com/schema.json"
 }
 ```
