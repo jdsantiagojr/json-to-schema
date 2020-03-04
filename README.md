@@ -3,8 +3,9 @@
 Options
 
 ```js
-{
-  title: '',
+const jsonToSchema = require('@jdsantiagojr/json-to-schema')
+const options = {
+  title: 'MySchema',
   id: 'http://example.com/schema.json',
   required: false,
   additionalProperties: false,
@@ -13,6 +14,7 @@ Options
   paths: true,
   detectFormat: true
 }
+jsonToSchema(payload, options)
 ```
 
 Example Input/Output
@@ -191,3 +193,26 @@ Example Input/Output
   "$id": "http://example.com/schema.json"
 }
 ```
+
+Command Line
+
+```sh
+yarn json-to-schema -f /path/to/file.json
+```
+
+```
+Options:
+  --version               Show version number  [boolean]
+  --file, -f              Path to JSON file  [required]
+  --id  [string] [default: "http://example.com/schema.json"]
+  --title  [string] [default: null]
+  --required  [boolean] [default: false]
+  --additionalProperties  [boolean] [default: false]
+  --detectFormat  [boolean] [default: true]
+  --examples  [boolean] [default: true]
+  --defaults  [boolean] [default: true]
+  --paths  [boolean] [default: true]
+  --help, -h              Show help  [boolean]
+```
+
+
