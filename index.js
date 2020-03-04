@@ -268,7 +268,7 @@ const main = function (json, opt) {
   return schema
 }
 
-if (typeof module !== 'undefined' && !module.parent) {
+if (typeof module !== 'undefined' && typeof module === 'object' && module.exports !== 'undefined') {
   module.exports = main
 }
 
